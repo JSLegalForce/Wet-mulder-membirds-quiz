@@ -3,233 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kennisquiz Wet Mulder — JS Legal Force</title>
+  <title>Kennisquiz Wet Mulder – JS Legal Force</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap');
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Outfit', sans-serif;
-      background: #f2f4f8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-    .launcher {
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 4px 24px rgba(26,42,94,0.12);
-      border-top: 4px solid #1a2a5e;
-      padding: 36px 40px;
-      max-width: 520px;
-      width: 100%;
-      text-align: center;
-    }
-    .launcher-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-    .launcher-logo svg { width: 36px; height: 42px; }
-    .launcher-logo span { font-size: 1.4rem; font-weight: 700; color: #1a2a5e; }
-    .launcher-badge {
-      display: inline-block;
-      background: #1a2a5e;
-      color: #8a9ab5;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 5px 14px;
-      border-radius: 4px;
-      margin-bottom: 16px;
-    }
-    .launcher-titel {
-      font-size: 1.7rem;
-      font-weight: 800;
-      color: #1a2a5e;
-      margin-bottom: 8px;
-      line-height: 1.2;
-    }
-    .launcher-omschrijving {
-      font-size: 0.95rem;
-      color: #4a5578;
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-    .launcher-info {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-    .info-item {
-      background: #f2f4f8;
-      border-radius: 8px;
-      padding: 12px 16px;
-      text-align: center;
-      border: 1px solid #dde2ef;
-      flex: 1;
-    }
-    .info-getal { font-size: 1.5rem; font-weight: 800; color: #1a2a5e; display: block; }
-    .info-label { font-size: 0.74rem; color: #4a5578; font-weight: 500; }
-    .btn-start {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: #1a2a5e;
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 1.05rem;
-      padding: 16px 32px;
-      cursor: pointer;
-      width: 100%;
-      transition: background 0.2s, transform 0.1s;
-    }
-    .btn-start:hover { background: #243580; }
-    .btn-start:active { transform: scale(0.98); }
-    .launcher-disclaimer { font-size: 0.78rem; color: #8a9ab5; margin-top: 14px; }
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: #000;
-      z-index: 99999;
-      flex-direction: column;
-    }
-    .overlay.actief { display: flex; }
-    .overlay-topbalk {
-      background: #1a2a5e;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      flex-shrink: 0;
-      height: 48px;
-    }
-    .overlay-titel {
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .overlay-titel svg { width: 22px; height: 26px; }
-    .btn-sluiten {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.15);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 6px;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      font-size: 0.85rem;
-      padding: 6px 14px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn-sluiten:hover { background: rgba(255,255,255,0.25); }
-    .overlay-iframe { flex: 1; width: 100%; border: none; background: #f2f4f8; }
-    @media (max-width: 480px) {
-      .launcher { padding: 24px 18px; }
-      .launcher-titel { font-size: 1.3rem; }
-    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html,body{height:100%;font-family:'Outfit',sans-serif;}
+    body{background:#0a0f1e;display:flex;align-items:center;justify-content:center;min-height:100vh;overflow:hidden;}
+    .bg-grid{position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(45,64,153,0.12) 1px,transparent 1px),linear-gradient(90deg,rgba(45,64,153,0.12) 1px,transparent 1px);background-size:56px 56px;animation:gridMove 25s linear infinite;}
+    @keyframes gridMove{0%{background-position:0 0}100%{background-position:56px 56px}}
+    .orb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;}
+    .orb-1{width:500px;height:500px;background:rgba(26,42,94,0.7);top:-150px;right:-100px;animation:f1 9s ease-in-out infinite;}
+    .orb-2{width:380px;height:380px;background:rgba(45,64,153,0.45);bottom:-100px;left:-80px;animation:f2 11s ease-in-out infinite;}
+    @keyframes f1{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,40px)}}
+    @keyframes f2{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-30px)}}
+    .card{position:relative;z-index:10;width:min(440px,92vw);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:56px 44px;text-align:center;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 32px 80px rgba(0,0,0,0.6);animation:cardIn 0.8s cubic-bezier(0.34,1.56,0.64,1) both;}
+    @keyframes cardIn{from{opacity:0;transform:translateY(40px) scale(0.92)}to{opacity:1;transform:translateY(0) scale(1)}}
+    .corner{position:absolute;width:18px;height:18px;}
+    .tl{top:16px;left:16px;border-top:2px solid rgba(138,154,181,0.5);border-left:2px solid rgba(138,154,181,0.5);border-radius:4px 0 0 0;}
+    .tr{top:16px;right:16px;border-top:2px solid rgba(138,154,181,0.5);border-right:2px solid rgba(138,154,181,0.5);border-radius:0 4px 0 0;}
+    .bl{bottom:16px;left:16px;border-bottom:2px solid rgba(138,154,181,0.5);border-left:2px solid rgba(138,154,181,0.5);border-radius:0 0 0 4px;}
+    .br{bottom:16px;right:16px;border-bottom:2px solid rgba(138,154,181,0.5);border-right:2px solid rgba(138,154,181,0.5);border-radius:0 0 4px 0;}
+    .shield-wrap{display:inline-block;margin-bottom:28px;animation:shieldFloat 3.5s ease-in-out infinite;filter:drop-shadow(0 0 28px rgba(45,64,153,0.9));}
+    @keyframes shieldFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .ring{position:relative;display:inline-block;}
+    .ring::before{content:'';position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(138,154,181,0.25);animation:rp 2.5s ease-in-out infinite;}
+    .ring::after{content:'';position:absolute;inset:-24px;border-radius:50%;border:1px solid rgba(138,154,181,0.12);animation:rp 2.5s ease-in-out infinite 0.5s;}
+    @keyframes rp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.06)}}
+    .brand{font-weight:900;font-size:1.85rem;color:#fff;letter-spacing:-0.02em;margin-bottom:4px;}
+    .divider{width:48px;height:2px;background:linear-gradient(90deg,transparent,rgba(138,154,181,0.5),transparent);margin:16px auto;}
+    .sub{font-size:0.71rem;color:rgba(138,154,181,0.7);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:40px;}
+    .btn{position:relative;overflow:hidden;width:100%;background:linear-gradient(135deg,#1a2a5e,#2d4099);color:#fff;border:1px solid rgba(138,154,181,0.25);border-radius:14px;padding:18px 24px;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.05rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;box-shadow:0 4px 28px rgba(26,42,94,0.6);transition:transform 0.2s,box-shadow 0.2s;}
+    .btn:hover{transform:translateY(-3px);box-shadow:0 10px 44px rgba(45,64,153,0.7);}
+    .btn:active{transform:scale(0.98);}
+    .btn::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent);animation:shimmer 3s ease-in-out infinite 1.5s;}
+    @keyframes shimmer{0%{left:-100%}60%,100%{left:150%}}
   </style>
 </head>
 <body>
-
-  <div class="launcher">
-    <div class="launcher-logo">
-      <svg viewBox="0 0 36 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M18 0L36 8V22C36 32 28 39 18 42C8 39 0 32 0 22V8L18 0Z" fill="#8a9ab5" opacity="0.4"/>
-        <path d="M18 3L33 10V22C33 31 26 37.5 18 40C10 37.5 3 31 3 22V10L18 3Z" fill="#1a2a5e" opacity="0.8"/>
-        <text x="18" y="27" text-anchor="middle" font-family="Outfit" font-weight="800" font-size="14" fill="white">JS</text>
+  <div class="bg-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="card">
+    <div class="corner tl"></div><div class="corner tr"></div>
+    <div class="corner bl"></div><div class="corner br"></div>
+    <div class="shield-wrap"><div class="ring">
+      <svg viewBox="0 0 80 93" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:84px;height:98px;display:block;">
+        <path d="M40 0L80 18V49C80 71 62 86 40 93C18 86 0 71 0 49V18L40 0Z" fill="rgba(26,42,94,0.8)"/>
+        <path d="M40 5L75 21V49C75 69 60 82 40 88C20 82 5 69 5 49V21L40 5Z" fill="rgba(36,53,128,0.9)"/>
+        <path d="M40 13L68 26V49C68 65 55 76 40 81C25 76 12 65 12 49V26L40 13Z" fill="#2d4099"/>
+        <path d="M40 20L62 30V49C62 62 52 71 40 75C28 71 18 62 18 49V30L40 20Z" fill="#3550b8"/>
+        <text x="40" y="59" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="900" font-size="22" fill="white" letter-spacing="2">JS</text>
       </svg>
-      <span>Legal Force</span>
-    </div>
-    <span class="launcher-badge">Kennisquiz — BOA's</span>
-    <h1 class="launcher-titel">Wet Mulder<br>Kennisquiz</h1>
-    <p class="launcher-omschrijving">Test je kennis over de Wet Mulder aan de hand van 6 praktijkscenario's. Na afloop ontvang je een bewijs van deelname met je score.</p>
-    <div class="launcher-info">
-      <div class="info-item">
-        <span class="info-getal">6</span>
-        <span class="info-label">Vragen</span>
-      </div>
-      <div class="info-item">
-        <span class="info-getal">70%</span>
-        <span class="info-label">Slagingsdrempel</span>
-      </div>
-      <div class="info-item">
-        <span class="info-getal">📜</span>
-        <span class="info-label">Bewijs van deelname</span>
-      </div>
-    </div>
-    <button class="btn-start" onclick="startFullscreen()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-        <path d="M8 3H5a2 2 0 00-2 2v3M16 3h3a2 2 0 012 2v3M8 21H5a2 2 0 01-2-2v-3M16 21h3a2 2 0 002-2v-3"/>
-      </svg>
-      Start de quiz in volledig scherm
+    </div></div>
+    <div class="brand">JS Legal Force</div>
+    <div class="divider"></div>
+    <div class="sub">Kennisquiz · Wet Mulder voor BOA's</div>
+    <button class="btn" onclick="window.open('https://jslegalforce.github.io/Wet-mulder-membirds-quiz/index.html','_blank','width='+screen.width+',height='+screen.height)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+      Open quiz op groot scherm
     </button>
-    <p class="launcher-disclaimer">De quiz opent in volledig scherm voor de beste ervaring.</p>
   </div>
-
-  <div id="overlay" class="overlay">
-    <div class="overlay-topbalk">
-      <div class="overlay-titel">
-        <svg viewBox="0 0 36 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M18 0L36 8V22C36 32 28 39 18 42C8 39 0 32 0 22V8L18 0Z" fill="#8a9ab5" opacity="0.3"/>
-          <text x="18" y="27" text-anchor="middle" font-family="Outfit" font-weight="800" font-size="14" fill="white">JS</text>
-        </svg>
-        Legal Force — Kennisquiz Wet Mulder
-      </div>
-      <button class="btn-sluiten" onclick="sluitFullscreen()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-          <path d="M18 6L6 18M6 6l12 12"/>
-        </svg>
-        Sluiten
-      </button>
-    </div>
-    <iframe id="quiz-iframe" class="overlay-iframe" src="" title="Kennisquiz Wet Mulder"></iframe>
-  </div>
-
-  <script>
-    const QUIZ_URL = 'https://jslegalforce.github.io/Wet-mulder-membirds-quiz/';
-
-    function startFullscreen() {
-      const overlay = document.getElementById('overlay');
-      document.getElementById('quiz-iframe').src = QUIZ_URL;
-      overlay.classList.add('actief');
-      document.body.style.overflow = 'hidden';
-      if (overlay.requestFullscreen) overlay.requestFullscreen().catch(() => {});
-      else if (overlay.webkitRequestFullscreen) overlay.webkitRequestFullscreen();
-    }
-
-    function sluitFullscreen() {
-      const overlay = document.getElementById('overlay');
-      overlay.classList.remove('actief');
-      document.body.style.overflow = '';
-      document.getElementById('quiz-iframe').src = '';
-      if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
-      else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && document.getElementById('overlay').classList.contains('actief')) {
-        sluitFullscreen();
-      }
-    });
-  </script>
-
 </body>
 </html>
