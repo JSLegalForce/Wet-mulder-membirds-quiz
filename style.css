@@ -20,26 +20,31 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; }
+
+html, body {
+  height: 100%;
+  font-size: 16px;
+}
 
 body {
   font-family: 'Outfit', sans-serif;
   background: var(--grijs-licht);
   color: var(--tekst);
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
 /* HEADER */
-.quiz-header { background: var(--blauw); }
+.quiz-header { background: var(--blauw); flex-shrink: 0; }
 
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
-  padding: 16px 24px;
+  padding: 12px 24px;
 }
 
 .header-schild { width: 36px; height: 42px; flex-shrink: 0; }
@@ -59,7 +64,7 @@ body {
 
 .header-sub {
   text-align: center;
-  padding: 0 24px 14px;
+  padding: 0 24px 10px;
   font-size: 0.78rem;
   color: rgba(255,255,255,0.55);
   letter-spacing: 0.08em;
@@ -73,26 +78,18 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 28px 16px 40px;
-  max-width: 100%;
+  padding: 16px 16px 16px;
+  max-width: 740px;
   margin: 0 auto;
   width: 100%;
-}
-
-/* Schermen ook volledig breedte */
-.scherm.actief > .card,
-.scherm.actief > .voortgang-wrapper + .card {
-  max-width: 100%;
-  width: 100%;
-}
-
-.card {
-  width: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--grijs-mid) transparent;
 }
 
 /* SCHERMEN */
 .scherm { display: none; width: 100%; animation: fadeIn 0.3s ease; }
-.scherm.actief { display: block; }
+.scherm.actief { display: flex; flex-direction: column; flex: 1; }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
@@ -104,8 +101,11 @@ body {
   background: var(--wit);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 36px 40px;
+  padding: 24px 32px;
   border-top: 4px solid var(--blauw);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /* BADGES */
@@ -119,26 +119,26 @@ body {
   text-transform: uppercase;
   padding: 5px 14px;
   border-radius: 4px;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 .start-titel {
   font-weight: 800;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: var(--blauw);
   line-height: 1.15;
   margin-bottom: 8px;
 }
 
 .start-ondertitel {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--tekst-mid);
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   line-height: 1.6;
 }
 
 /* FORMULIER */
-.form-groep { margin-bottom: 18px; }
+.form-groep { margin-bottom: 14px; }
 
 .form-label {
   display: block;
@@ -152,7 +152,7 @@ body {
 
 .form-input {
   width: 100%;
-  padding: 12px 14px;
+  padding: 10px 14px;
   border: 2px solid var(--grijs-mid);
   border-radius: 8px;
   font-family: 'Outfit', sans-serif;
@@ -179,21 +179,21 @@ body {
 .start-info-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 32px;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .info-item {
   background: var(--grijs-licht);
   border-radius: 8px;
-  padding: 16px 12px;
+  padding: 12px 10px;
   text-align: center;
   border: 1px solid var(--grijs-mid);
 }
 
 .info-getal {
   font-weight: 800;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   color: var(--blauw);
   display: block;
 }
@@ -219,11 +219,12 @@ body {
   font-family: 'Outfit', sans-serif;
   font-weight: 700;
   font-size: 1rem;
-  padding: 14px 32px;
+  padding: 12px 32px;
   cursor: pointer;
   transition: background 0.2s, transform 0.1s;
   width: 100%;
   margin-top: 8px;
+  flex-shrink: 0;
 }
 
 .knop-primair:hover { background: var(--blauw-mid); }
@@ -244,12 +245,13 @@ body {
   font-family: 'Outfit', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
-  padding: 12px 24px;
+  padding: 10px 24px;
   cursor: pointer;
   transition: all 0.2s;
   width: 100%;
   margin-top: 8px;
   margin-bottom: 4px;
+  flex-shrink: 0;
 }
 
 .knop-juridisch:hover { background: #fef0c0; }
@@ -265,23 +267,24 @@ body {
   font-family: 'Outfit', sans-serif;
   font-weight: 700;
   font-size: 1rem;
-  padding: 13px 32px;
+  padding: 11px 32px;
   cursor: pointer;
   transition: all 0.2s;
   width: 100%;
   margin-top: 10px;
+  flex-shrink: 0;
 }
 
 .knop-sekundair:hover { background: var(--blauw); color: var(--wit); }
 
 /* VOORTGANG */
-.voortgang-wrapper { margin-bottom: 18px; }
+.voortgang-wrapper { margin-bottom: 12px; flex-shrink: 0; }
 
 .voortgang-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .voortgang-label {
@@ -295,7 +298,7 @@ body {
   background: var(--grijs-mid);
   border-radius: 99px;
   overflow: hidden;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .voortgang-balk {
@@ -315,12 +318,12 @@ body {
 }
 
 .vraag-nummer-dot {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: var(--grijs-mid);
   color: var(--tekst-mid);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -329,32 +332,18 @@ body {
   border: 2px solid transparent;
 }
 
-.vraag-nummer-dot.actief {
-  background: var(--blauw);
-  color: var(--wit);
-  border-color: var(--blauw);
-  transform: scale(1.15);
-}
-
-.vraag-nummer-dot.klaar-goed {
-  background: var(--groen-licht);
-  color: var(--groen);
-  border-color: var(--groen);
-}
-
-.vraag-nummer-dot.klaar-fout {
-  background: var(--rood-licht);
-  color: var(--rood);
-  border-color: var(--rood);
-}
+.vraag-nummer-dot.actief { background: var(--blauw); color: var(--wit); border-color: var(--blauw); transform: scale(1.15); }
+.vraag-nummer-dot.klaar-goed { background: var(--groen-licht); color: var(--groen); border-color: var(--groen); }
+.vraag-nummer-dot.klaar-fout { background: var(--rood-licht); color: var(--rood); border-color: var(--rood); }
 
 /* VRAAG */
 .vraag-meta {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   flex-wrap: wrap;
+  flex-shrink: 0;
 }
 
 .vraag-thema-badge {
@@ -380,18 +369,21 @@ body {
 
 .vraag-tekst {
   font-family: 'Source Serif 4', serif;
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.65;
   color: var(--tekst);
-  margin-bottom: 22px;
+  margin-bottom: 16px;
+  flex-shrink: 0;
 }
 
 /* OPTIES */
 .opties-container {
   display: flex;
   flex-direction: column;
-  gap: 9px;
-  margin-bottom: 16px;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex: 1;
+  justify-content: flex-start;
 }
 
 .optie-knop {
@@ -401,37 +393,34 @@ body {
   background: var(--wit);
   border: 2px solid var(--grijs-mid);
   border-radius: 8px;
-  padding: 11px 14px;
+  padding: 10px 14px;
   cursor: pointer;
   text-align: left;
   font-family: 'Outfit', sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   color: var(--tekst);
   transition: border-color 0.15s, background 0.15s, transform 0.1s;
   width: 100%;
+  flex-shrink: 0;
 }
 
-.optie-knop:hover:not(:disabled) {
-  border-color: var(--blauw-licht);
-  background: #eef1f9;
-  transform: translateX(3px);
-}
-
+.optie-knop:hover:not(:disabled) { border-color: var(--blauw-licht); background: #eef1f9; transform: translateX(3px); }
 .optie-knop:disabled { cursor: default; }
 
 .optie-letter {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  min-width: 28px;
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
   background: var(--grijs-licht);
   border-radius: 6px;
   font-weight: 700;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--blauw);
   transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
 }
 
 .optie-tekst { line-height: 1.4; font-weight: 500; }
@@ -445,31 +434,17 @@ body {
 .feedback-container {
   display: none;
   border-radius: 8px;
-  padding: 13px 15px;
+  padding: 12px 14px;
   margin-bottom: 10px;
-  font-size: 0.88rem;
-  line-height: 1.65;
+  font-size: 0.87rem;
+  line-height: 1.6;
   font-weight: 500;
+  flex-shrink: 0;
 }
 
-.feedback-container.actief {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  animation: fadeIn 0.2s ease;
-}
-
-.feedback-container.juist {
-  background: var(--groen-licht);
-  border-left: 4px solid var(--groen);
-  color: #145c38;
-}
-
-.feedback-container.fout {
-  background: var(--rood-licht);
-  border-left: 4px solid var(--rood);
-  color: #8b1f1f;
-}
+.feedback-container.actief { display: flex; align-items: flex-start; gap: 10px; animation: fadeIn 0.2s ease; }
+.feedback-container.juist { background: var(--groen-licht); border-left: 4px solid var(--groen); color: #145c38; }
+.feedback-container.fout { background: var(--rood-licht); border-left: 4px solid var(--rood); color: #8b1f1f; }
 
 .feedback-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; font-weight: 700; }
 
@@ -484,31 +459,16 @@ body {
   border-radius: 4px;
 }
 
-.feedback-container.fout .feedback-artikel {
-  color: var(--rood);
-  background: rgba(181,42,42,0.07);
-}
+.feedback-container.fout .feedback-artikel { color: var(--rood); background: rgba(181,42,42,0.07); }
 
 #btn-volgende { display: none; }
 #btn-volgende.actief { display: flex; }
 
 /* JURIDISCH ADVIES SCHERM */
-.juridisch-card {
-  border-top-color: var(--oranje);
-}
+.juridisch-card { border-top-color: var(--oranje); }
 
-.juridisch-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 24px;
-}
-
-.juridisch-icoon {
-  font-size: 2rem;
-  flex-shrink: 0;
-  margin-top: 4px;
-}
+.juridisch-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 18px; }
+.juridisch-icoon { font-size: 2rem; flex-shrink: 0; margin-top: 4px; }
 
 .juridisch-badge {
   display: inline-block;
@@ -524,160 +484,73 @@ body {
   margin-bottom: 6px;
 }
 
-.juridisch-titel {
-  font-weight: 800;
-  font-size: 1.4rem;
-  color: var(--blauw);
-  line-height: 1.2;
-}
+.juridisch-titel { font-weight: 800; font-size: 1.3rem; color: var(--blauw); line-height: 1.2; }
 
 .juridisch-stap {
   display: flex;
   gap: 16px;
   align-items: flex-start;
-  margin-bottom: 18px;
-  padding: 14px 16px;
+  margin-bottom: 14px;
+  padding: 12px 14px;
   background: var(--grijs-licht);
   border-radius: 8px;
   border-left: 3px solid var(--blauw);
 }
 
 .stap-nummer {
-  width: 28px;
-  height: 28px;
-  min-width: 28px;
-  background: var(--blauw);
-  color: var(--wit);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 0.85rem;
-  flex-shrink: 0;
+  width: 26px; height: 26px; min-width: 26px;
+  background: var(--blauw); color: var(--wit);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 0.82rem; flex-shrink: 0;
 }
 
-.stap-inhoud strong {
-  display: block;
-  color: var(--blauw);
-  font-size: 0.95rem;
-  margin-bottom: 4px;
-}
-
-.stap-inhoud p {
-  font-size: 0.88rem;
-  color: var(--tekst-mid);
-  line-height: 1.55;
-}
+.stap-inhoud strong { display: block; color: var(--blauw); font-size: 0.92rem; margin-bottom: 3px; }
+.stap-inhoud p { font-size: 0.85rem; color: var(--tekst-mid); line-height: 1.5; }
 
 .juridisch-tip {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  background: #fff8e6;
-  border: 1px solid var(--oranje);
-  border-radius: 8px;
-  padding: 14px 16px;
-  font-size: 0.88rem;
-  color: #6b4500;
-  line-height: 1.55;
-  margin-top: 4px;
+  display: flex; gap: 12px; align-items: flex-start;
+  background: #fff8e6; border: 1px solid var(--oranje);
+  border-radius: 8px; padding: 12px 14px;
+  font-size: 0.86rem; color: #6b4500; line-height: 1.5; margin-top: 4px;
 }
 
 .tip-icoon { font-size: 1.1rem; flex-shrink: 0; }
 
 /* EINDSCHERM */
-.einde-header { text-align: center; margin-bottom: 28px; }
-
-.einde-titel {
-  font-weight: 800;
-  font-size: 1.8rem;
-  color: var(--blauw);
-  margin-bottom: 4px;
-}
-
+.einde-header { text-align: center; margin-bottom: 20px; }
+.einde-titel { font-weight: 800; font-size: 1.6rem; color: var(--blauw); margin-bottom: 4px; }
 .einde-subtitel { font-size: 0.92rem; color: var(--tekst-mid); }
 
-.score-blok-wrapper { display: flex; justify-content: center; margin-bottom: 24px; }
+.score-blok-wrapper { display: flex; justify-content: center; margin-bottom: 18px; }
 
 .score-blok {
-  background: var(--blauw);
-  color: var(--wit);
-  border-radius: 12px;
-  padding: 28px 48px;
-  text-align: center;
+  background: var(--blauw); color: var(--wit);
+  border-radius: 12px; padding: 22px 40px; text-align: center;
 }
 
-.score-getal {
-  font-weight: 800;
-  font-size: 3.2rem;
-  line-height: 1;
-  color: var(--zilver);
-}
-
-.score-label {
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.55);
-  margin-top: 4px;
-  font-weight: 500;
-}
-
-.score-detail {
-  font-size: 0.88rem;
-  color: rgba(255,255,255,0.75);
-  margin-top: 6px;
-}
+.score-getal { font-weight: 800; font-size: 2.8rem; line-height: 1; color: var(--zilver); }
+.score-label { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin-top: 4px; font-weight: 500; }
+.score-detail { font-size: 0.88rem; color: rgba(255,255,255,0.75); margin-top: 6px; }
 
 .beoordeling {
-  font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 8px 20px;
-  border-radius: 6px;
-  display: block;
-  text-align: center;
-  width: fit-content;
-  margin: 0 auto 8px;
+  font-weight: 700; font-size: 1.1rem; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 8px 20px; border-radius: 6px; display: block; text-align: center;
+  width: fit-content; margin: 0 auto 8px;
 }
 
 .beoordeling.geslaagd { background: var(--groen-licht); color: var(--groen); }
 .beoordeling.gezakt { background: var(--rood-licht); color: var(--rood); }
 
-.beoordeling-tekst {
-  text-align: center;
-  font-size: 0.88rem;
-  color: var(--tekst-mid);
-  margin-bottom: 24px;
-  line-height: 1.6;
-}
+.beoordeling-tekst { text-align: center; font-size: 0.88rem; color: var(--tekst-mid); margin-bottom: 18px; line-height: 1.6; }
 
 /* OVERZICHT */
-.auditpunt-overzicht-titel {
-  font-weight: 700;
-  font-size: 0.85rem;
-  color: var(--blauw);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 10px;
-}
+.auditpunt-overzicht-titel { font-weight: 700; font-size: 0.85rem; color: var(--blauw); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
 
-.auditpunt-overzicht {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 24px;
-}
+.auditpunt-overzicht { display: flex; flex-direction: column; gap: 5px; margin-bottom: 18px; }
 
 .auditpunt-rij {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 9px 14px;
-  border-radius: 7px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  gap: 8px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px; border-radius: 7px; font-size: 0.85rem; font-weight: 500; gap: 8px;
 }
 
 .auditpunt-rij.goed { background: var(--groen-licht); border-left: 3px solid var(--groen); }
@@ -689,23 +562,36 @@ body {
 .auditpunt-rij.fout .auditpunt-icoon { color: var(--rood); }
 
 /* FOOTER */
-.quiz-footer {
-  text-align: center;
-  padding: 16px;
-  font-size: 0.75rem;
-  color: var(--tekst-mid);
-  opacity: 0.6;
+.quiz-footer { text-align: center; padding: 8px; font-size: 0.75rem; color: var(--tekst-mid); opacity: 0.6; flex-shrink: 0; }
+
+/* RESPONSIVE - kleine schermen */
+@media (max-width: 560px) {
+  .card { padding: 16px 14px; }
+  .start-info-grid { gap: 8px; }
+  .info-getal { font-size: 1.3rem; }
+  .start-titel { font-size: 1.5rem; }
+  .score-getal { font-size: 2.2rem; }
+  .score-blok { padding: 18px 24px; }
+  .optie-knop { padding: 9px 10px; font-size: 0.85rem; }
+  .optie-letter { width: 22px; height: 22px; min-width: 22px; }
+  .vraag-nummer-dot { width: 26px; height: 26px; font-size: 0.73rem; }
 }
 
-/* RESPONSIVE */
-@media (max-width: 560px) {
-  .card { padding: 22px 18px; }
-  .start-info-grid { gap: 8px; }
-  .info-getal { font-size: 1.4rem; }
-  .start-titel { font-size: 1.6rem; }
-  .score-getal { font-size: 2.6rem; }
-  .score-blok { padding: 22px 28px; }
-  .optie-knop { padding: 10px 12px; font-size: 0.87rem; }
-  .optie-letter { width: 24px; height: 24px; min-width: 24px; }
-  .vraag-nummer-dot { width: 28px; height: 28px; font-size: 0.75rem; }
+@media (max-height: 700px) {
+  .card { padding: 16px 24px; }
+  .vraag-tekst { font-size: 0.95rem; margin-bottom: 12px; }
+  .start-titel { font-size: 1.5rem; }
+  .start-ondertitel { margin-bottom: 14px; }
+  .start-info-grid { margin-bottom: 14px; }
+  .knop-primair { padding: 10px 24px; }
+  .form-groep { margin-bottom: 10px; }
 }
+
+@media (max-height: 600px) {
+  .card { padding: 12px 18px; }
+  .vraag-tekst { font-size: 0.9rem; margin-bottom: 8px; }
+  .optie-knop { padding: 7px 10px; font-size: 0.84rem; }
+  .form-input { padding: 8px 12px; }
+  .header-inner { padding: 8px 24px; }
+  .header-sub { padding-bottom: 6px; font-size: 0.70rem; }
+  }
