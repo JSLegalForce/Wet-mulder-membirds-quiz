@@ -225,7 +225,7 @@ document.getElementById('btn-certificaat').addEventListener('click', () => {
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(26);
   doc.setTextColor(26, 42, 94);
-  doc.text(geslaagd ? 'BEWIJS VAN DEELNAME' : 'RESULTATENOBERZICHT', W / 2, 64, { align: 'center' });
+  doc.text(geslaagd ? 'BEWIJS VAN DEELNAME' : 'RESULTATEN OVERZICHT', W / 2, 64, { align: 'center' });
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(11);
@@ -267,8 +267,7 @@ document.getElementById('btn-certificaat').addEventListener('click', () => {
   doc.setFontSize(10.5);
   doc.setTextColor(26, 42, 94);
   if (geslaagd) {
-    doc.text('Heeft de kennisquiz Wet Mulder van JS Legal Force met goed gevolg afgerond', W / 2, 123, { align: 'center' });
-    doc.text('en beschikt over voldoende basiskennis van de Wet administratiefrechtelijke handhaving verkeersvoorschriften.', W / 2, 130, { align: 'center' });
+    doc.text('Heeft de kennisquiz Wet Mulder van JS Legal Force met goed gevolg afgerond.', W / 2, 126, { align: 'center' });
   } else {
     doc.text('Heeft deelgenomen aan de kennisquiz Wet Mulder van JS Legal Force.', W / 2, 123, { align: 'center' });
     doc.text('De vereiste slagingsdrempel is bij deze deelname niet behaald.', W / 2, 130, { align: 'center' });
