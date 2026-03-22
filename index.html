@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kennisquiz Wet Mulder – JS Legal Force</title>
+  <title>Kennisquiz Wet Mulder â JS Legal Force</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
@@ -18,32 +18,32 @@
       <span class="logo-tekst">Legal Force</span>
     </div>
     <div class="header-lijn"></div>
-    <p class="header-sub">Kennisquiz — Wet Mulder voor BOA's</p>
+    <p class="header-sub">Kennisquiz â Wet Mulder voor BOA's</p>
   </header>
   <main class="quiz-wrapper">
     <div id="scherm-naam" class="scherm actief">
       <div class="card">
-        <span class="start-badge">Stap 1 — Gegevens invullen</span>
+        <span class="start-badge">Stap 1 â Gegevens invullen</span>
         <h1 class="start-titel">Jouw gegevens</h1>
         <p class="start-ondertitel">Vul je naam in voordat je begint. Deze gegevens worden gebruikt voor het bewijs van deelname.</p>
         <div class="form-groep"><label class="form-label" for="input-voornaam">Voornaam *</label><input type="text" id="input-voornaam" class="form-input" placeholder="bijv. Jan" /></div>
         <div class="form-groep"><label class="form-label" for="input-achternaam">Achternaam *</label><input type="text" id="input-achternaam" class="form-input" placeholder="bijv. de Vries" /></div>
         <div class="form-groep"><label class="form-label" for="input-organisatie">Organisatie <span class="optioneel">(optioneel)</span></label><input type="text" id="input-organisatie" class="form-input" placeholder="bijv. Gemeente Amsterdam" /></div>
         <p id="naam-fout" class="fout-melding">Vul je voornaam en achternaam in om door te gaan.</p>
-        <button id="btn-naar-start" class="knop-primair">Verder naar de quiz →</button>
+        <button id="btn-naar-start" class="knop-primair">Verder naar de quiz â</button>
       </div>
     </div>
     <div id="scherm-start" class="scherm">
       <div class="card">
-        <span class="start-badge">Kennisquiz — Wet Mulder</span>
+        <span class="start-badge">Kennisquiz â Wet Mulder</span>
         <h1 class="start-titel" id="start-welkom">Wet Mulder<br>Kennisquiz</h1>
         <p class="start-ondertitel">Test je kennis over de Wet Mulder aan de hand van 6 praktijkscenario's.</p>
         <div class="start-info-grid">
           <div class="info-item"><span class="info-getal">6</span><span class="info-label">Vragen</span></div>
           <div class="info-item"><span class="info-getal">70%</span><span class="info-label">Slagingsdrempel</span></div>
-          <div class="info-item"><span class="info-getal">📜</span><span class="info-label">Bewijs van deelname</span></div>
+          <div class="info-item"><span class="info-getal">ð</span><span class="info-label">Bewijs van deelname</span></div>
         </div>
-        <button id="btn-start" class="knop-primair">Start de kennisquiz →</button>
+        <button id="btn-start" class="knop-primair">Start de kennisquiz â</button>
       </div>
     </div>
     <div id="scherm-vraag" class="scherm">
@@ -57,35 +57,36 @@
         <p id="vraag-tekst" class="vraag-tekst"></p>
         <div id="opties-container" class="opties-container"></div>
         <div id="feedback-container" class="feedback-container"><span class="feedback-icon" id="feedback-icon"></span><div><span id="feedback-tekst"></span><span id="feedback-artikel" class="feedback-artikel"></span></div></div>
-        <button id="btn-juridisch" class="knop-juridisch" style="display:none;">⚖️ Bekijk juridisch advies</button>
-        <button id="btn-volgende" class="knop-primair">Volgende vraag →</button>
+        <button id="btn-juridisch" class="knop-juridisch" style="display:none;">âï¸ Bekijk juridisch advies</button>
+        <button id="btn-volgende" class="knop-primair">Volgende vraag â</button>
       </div>
     </div>
     <div id="scherm-juridisch" class="scherm">
       <div class="card juridisch-card">
-        <div class="juridisch-header"><div class="juridisch-icoon">⚖️</div><div><span class="juridisch-badge">Juridisch advies</span><h2 class="juridisch-titel">Hoe handel je in deze situatie?</h2></div></div>
+        <div class="juridisch-header"><div class="juridisch-icoon">âï¸</div><div><span class="juridisch-badge">Juridisch advies</span><h2 class="juridisch-titel">Hoe handel je in deze situatie?</h2></div></div>
         <div class="juridisch-stap"><div class="stap-nummer">1</div><div class="stap-inhoud"><strong>Vorder direct het identiteitsbewijs</strong><p>Op grond van artikel 5:16a Awb.</p></div></div>
         <div class="juridisch-stap"><div class="stap-nummer">2</div><div class="stap-inhoud"><strong>Betrokkene wordt verdachte</strong><p>Artikel 447e van het Wetboek van Strafrecht.</p></div></div>
         <div class="juridisch-stap"><div class="stap-nummer">3</div><div class="stap-inhoud"><strong>Nu wel bevoegd als BOA</strong><p>Artikel 447e Sr valt binnen de opsporingsbevoegdheid van de BOA.</p></div></div>
         <div class="juridisch-stap"><div class="stap-nummer">4</div><div class="stap-inhoud"><strong>Altijd proportioneel handelen</strong><p>Proportionaliteit en subsidiariteit.</p></div></div>
-        <div class="juridisch-tip"><span class="tip-icoon">💡</span><span><strong>Let op:</strong> Artikel 34 Wet Mulder valt niet binnen de opsporingsbevoegdheid van de BOA.</span></div>
-        <button id="btn-verder-na-juridisch" class="knop-primair" style="margin-top:20px;">Verder met de quiz →</button>
+        <div class="juridisch-tip"><span class="tip-icoon">ð¡</span><span><strong>Let op:</strong> Artikel 34 Wet Mulder valt niet binnen de opsporingsbevoegdheid van de BOA.</span></div>
+        <button id="btn-verder-na-juridisch" class="knop-primair" style="margin-top:20px;">Verder met de quiz â</button>
       </div>
     </div>
     <div id="scherm-einde" class="scherm">
       <div class="card">
         <div class="einde-header"><h2 class="einde-titel">Resultaat</h2><p id="einde-naam-tekst" class="einde-subtitel"></p></div>
-        <div class="score-blok-wrapper"><div class="score-blok"><div id="eind-percentage" class="score-getal">—</div><div class="score-label">Behaald percentage</div><div id="eind-score" class="score-detail"></div></div></div>
+        <div class="score-blok-wrapper"><div class="score-blok"><div id="eind-percentage" class="score-getal">â</div><div class="score-label">Behaald percentage</div><div id="eind-score" class="score-detail"></div></div></div>
         <div id="eind-beoordeling" class="beoordeling"></div>
         <p id="eind-beoordeling-tekst" class="beoordeling-tekst"></p>
         <div class="auditpunt-overzicht-titel">Overzicht per vraag</div>
         <div id="vraag-overzicht" class="auditpunt-overzicht"></div>
-        <button id="btn-certificaat" class="knop-primair knop-certificaat">↓ Download bewijs van deelname (PDF)</button>
+        <button id="btn-certificaat" class="knop-primair knop-certificaat">â Download bewijs van deelname (PDF)</button>
         <button id="btn-herstart" class="knop-sekundair">Opnieuw proberen</button>
+        <button id="btn-sluiten" class="knop-sekundair" onclick="window.close()" style="margin-top:10px; color:#b52a2a; border-color:#b52a2a;">&#10005; Quiz sluiten</button>
       </div>
     </div>
   </main>
-  <footer class="quiz-footer">© JS Legal Force — Kennisquiz Wet Mulder voor BOA's</footer>
+  <footer class="quiz-footer">Â© JS Legal Force â Kennisquiz Wet Mulder voor BOA's</footer>
   <script src="questions.js"></script>
   <script src="quiz.js"></script>
 </body>
