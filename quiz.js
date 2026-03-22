@@ -1,5 +1,5 @@
 // =============================================
-// JS Legal Force — Kennisquiz Wet Mulder v2
+// JS Legal Force â Kennisquiz Wet Mulder v2
 // =============================================
 const CONFIG = { slagingsdrempel: 0.70 };
 let deelnemerNaam = '';
@@ -83,7 +83,7 @@ function toonVraag() {
   feedback.classList.remove('actief', 'juist', 'fout');
   document.getElementById('btn-volgende').classList.remove('actief');
   document.getElementById('btn-juridisch').style.display = 'none';
-  document.getElementById('btn-volgende').textContent = huidigVraagIndex < ALLE_VRAGEN.length - 1 ? 'Volgende vraag →' : 'Bekijk resultaat →';
+  document.getElementById('btn-volgende').textContent = huidigVraagIndex < ALLE_VRAGEN.length - 1 ? 'Volgende vraag â' : 'Bekijk resultaat â';
   const container = document.getElementById('opties-container');
   container.innerHTML = '';
   const letters = ['A', 'B', 'C', 'D'];
@@ -110,9 +110,9 @@ function verwerkAntwoord(gekozenIndex, gekliktBtn, vraag) {
   const feedback = document.getElementById('feedback-container');
   feedback.classList.remove('juist', 'fout');
   feedback.classList.add(juist ? 'juist' : 'fout', 'actief');
-  document.getElementById('feedback-icon').textContent = juist ? '✓' : '✗';
+  document.getElementById('feedback-icon').textContent = juist ? 'â' : 'â';
   document.getElementById('feedback-tekst').textContent = vraag.uitleg + ' ';
-  document.getElementById('feedback-artikel').textContent = '— ' + vraag.artikel;
+  document.getElementById('feedback-artikel').textContent = 'â ' + vraag.artikel;
   if (vraag.juridischAdvies) { document.getElementById('btn-juridisch').style.display = 'flex'; toonJuridischNa = true; }
   document.getElementById('btn-volgende').classList.add('actief');
   document.getElementById('voortgang-balk').style.width = ((huidigVraagIndex + 1) / ALLE_VRAGEN.length * 100) + '%';
@@ -129,24 +129,24 @@ function toonEinde() {
   const totaal = ALLE_VRAGEN.length;
   const percentage = score / totaal;
   const geslaagd = percentage >= CONFIG.slagingsdrempel;
-  document.getElementById('einde-naam-tekst').textContent = `${deelnemerNaam} ${deelnemerAchternaam}${deelnemerOrganisatie ? ' — ' + deelnemerOrganisatie : ''}`;
+  document.getElementById('einde-naam-tekst').textContent = `${deelnemerNaam} ${deelnemerAchternaam}${deelnemerOrganisatie ? ' â ' + deelnemerOrganisatie : ''}`;
   document.getElementById('eind-score').textContent = `${score} van de ${totaal} vragen goed`;
   document.getElementById('eind-percentage').textContent = Math.round(percentage * 100) + '%';
   const beoordeling = document.getElementById('eind-beoordeling');
   beoordeling.className = 'beoordeling ' + (geslaagd ? 'geslaagd' : 'gezakt');
-  beoordeling.textContent = geslaagd ? '✓ Geslaagd' : '✗ Niet geslaagd';
+  beoordeling.textContent = geslaagd ? 'â Geslaagd' : 'â Niet geslaagd';
   document.getElementById('eind-beoordeling-tekst').textContent = geslaagd
     ? 'Gefeliciteerd! Je hebt de kennisquiz Wet Mulder met goed gevolg afgerond.'
     : `Je hebt minimaal ${Math.round(CONFIG.slagingsdrempel * 100)}% nodig om te slagen. Bestudeer de theorie en probeer het opnieuw.`;
   const btnCert = document.getElementById('btn-certificaat');
-  btnCert.textContent = geslaagd ? '↓ Download bewijs van deelname (PDF)' : '↓ Download resultatenoverzicht (PDF)';
+  btnCert.textContent = geslaagd ? 'â Download bewijs van deelname (PDF)' : 'â Download resultatenoverzicht (PDF)';
   const overzicht = document.getElementById('vraag-overzicht');
   overzicht.innerHTML = '';
   vraagResultaten.forEach((res, i) => {
     const status = res.juist ? 'goed' : 'fout';
     const rij = document.createElement('div');
     rij.className = `auditpunt-rij ${status}`;
-    rij.innerHTML = `<span class="auditpunt-naam">Vraag ${i + 1} — ${res.thema}</span><span class="auditpunt-icoon">${res.juist ? '✓' : '✗'}</span>`;
+    rij.innerHTML = `<span class="auditpunt-naam">Vraag ${i + 1} â ${res.thema}</span><span class="auditpunt-icoon">${res.juist ? 'â' : 'â'}</span>`;
     overzicht.appendChild(rij);
   });
   toonScherm('einde');
@@ -186,7 +186,7 @@ document.getElementById('btn-certificaat').addEventListener('click', () => {
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8);
   doc.setTextColor(138, 154, 181);
-  doc.text("Kennisquiz Wet Mulder — voor BOA's", W / 2, 23, { align: 'center' });
+  doc.text("Kennisquiz Wet Mulder â voor BOA's", W / 2, 23, { align: 'center' });
 
   // Buitenkader
   doc.setDrawColor(200, 210, 230);
@@ -197,9 +197,9 @@ document.getElementById('btn-certificaat').addEventListener('click', () => {
 
   // Status badge - gecentreerd met correcte symbolen
   const badgeTekst = geslaagd ? 'KENNISQUIZ BEHAALD' : 'KENNISQUIZ NIET BEHAALD';
-  const badgeSymbool = geslaagd ? '✓' : '✗';
+  const badgeSymbool = geslaagd ? 'â' : 'â';
   const badgeVolTekst = badgeSymbool + '   ' + badgeTekst;
-  const badgeBreedte = 80;
+  const badgeBreedte = geslaagd ? 70 : 90;
   const badgeX = (W - badgeBreedte) / 2;
 
   if (geslaagd) {
@@ -215,7 +215,7 @@ document.getElementById('btn-certificaat').addEventListener('click', () => {
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(8.5);
   doc.setTextColor(geslaagd ? 26 : 181, geslaagd ? 122 : 42, geslaagd ? 74 : 42);
-  doc.text(badgeVolTekst, W / 2, 46, { align: 'center' });
+  doc.text(badgeTekst, W / 2, 46, { align: 'center' });
 
   // Hoofdtitel
   doc.setFont('helvetica', 'bold');
@@ -226,7 +226,7 @@ document.getElementById('btn-certificaat').addEventListener('click', () => {
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(11);
   doc.setTextColor(74, 85, 120);
-  doc.text("Kennisquiz Wet Mulder voor BOA’s", W / 2, 72, { align: 'center' });
+  doc.text("Kennisquiz Wet Mulder voor BOAâs", W / 2, 72, { align: 'center' });
 
   // Scheidingslijn
   doc.setDrawColor(200, 210, 230);
@@ -286,11 +286,11 @@ document.getElementById('btn-certificaat').addEventListener('click', () => {
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(12.5);
   doc.setTextColor(geslaagd ? 26 : 181, geslaagd ? 122 : 42, geslaagd ? 74 : 42);
-  doc.text(`Score: ${score} van de ${totaal} vragen correct — ${pct}%`, W / 2, 144.5, { align: 'center' });
+  doc.text(`Score: ${score} van de ${totaal} vragen correct â ${pct}%`, W / 2, 144.5, { align: 'center' });
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8.5);
-  doc.text(`Slagingsdrempel: ${Math.round(CONFIG.slagingsdrempel * 100)}% — ${geslaagd ? 'Behaald' : 'Niet behaald'}`, W / 2, 151, { align: 'center' });
+  doc.text(`Slagingsdrempel: ${Math.round(CONFIG.slagingsdrempel * 100)}% â ${geslaagd ? 'Behaald' : 'Niet behaald'}`, W / 2, 151, { align: 'center' });
 
   // Datum en documentnummer
   doc.setFont('helvetica', 'normal');
@@ -309,7 +309,7 @@ document.getElementById('btn-certificaat').addEventListener('click', () => {
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8);
   doc.setTextColor(138, 154, 181);
-  doc.text("© JS Legal Force — Kennisquiz Wet Mulder voor BOA's", W / 2, H - 10, { align: 'center' });
+  doc.text("Â© JS Legal Force â Kennisquiz Wet Mulder voor BOA's", W / 2, H - 10, { align: 'center' });
 
   const prefix = geslaagd ? 'Bewijs_Deelname' : 'Resultaten';
   doc.save(`${prefix}_WetMulder_${deelnemerNaam}_${deelnemerAchternaam}_${nu.getFullYear()}.pdf`);
